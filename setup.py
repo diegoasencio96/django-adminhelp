@@ -6,32 +6,42 @@
 # General Public License version 3 (LGPLv3) as published by the Free
 # Software Foundation. See the file README for copying conditions.
 
-try:
-    from setuptools import setup, find_packages
-except ImportError:
-    from ez_setup import use_setuptools
-    use_setuptools()
-    from setuptools import setup, find_packages
+import codecs
+import os
+import sys
 
-from adminhelp import get_version
+from setuptools import setup, find_packages
+
+
+if 'publish' in sys.argv:
+    os.system('python setup.py sdist upload')
+    sys.exit()
+
+read = lambda filepath: codecs.open(filepath, 'r', 'utf-8').read()
+
+
+# Dynamically calculate the version based on adminhelp.VERSION.
+version = __import__('adminhelp').get_version()
 
 setup(
     name = 'django-adminhelp',
-    version = get_version(),
-    description = 'A help application for Django administration.',
-    long_description = ('Django Admin Help is a pluggable help system for '
-                        'Django Web Framework to be used with administration '
-                        'application.\n\n'
-                        'Admin Help was inspired by help system of Django '
-                        'Grappelli.'),
+    version = version,
+    description = 'A help application for Django admin',
+    long_description=read(os.path.join(os.path.dirname(__file__), 'README.rst')),
     keywords = 'django apps admin help',
     author = 'Guilherme Gondim',
-    author_email = 'semente@taurinus.org',
+    author_email = 'semente+django-adminhelp@taurinus.org',
+    maintainer = 'Guilherme Gondim',
+    maintainer_email = 'semente+django-adminhelp@taurinus.org',
     url = 'http://github.com/semente/django-adminhelp',
     download_url = 'http://github.com/semente/django-adminhelp/downloads',
     license = 'GNU Lesser General Public License (LGPL), Version 3',
+    packages=find_packages(),
+    zip_safe=False,
+    include_package_data=True,
     classifiers = [
-        'Environment :: Plugins',
+        'Development Status :: 5 - Production/Stable',
+        'Environment :: Web Environment',
         'Framework :: Django',
         'Intended Audience :: Developers',
         'License :: OSI Approved :: GNU Library or Lesser General Public License (LGPL)',
@@ -39,7 +49,5 @@ setup(
         'Programming Language :: Python',
         'Topic :: Software Development :: Libraries :: Python Modules',
     ],
-    packages = find_packages(),
-    include_package_data = True,
-    zip_safe = False,
+    install_requires=['django-positions',],
 )
