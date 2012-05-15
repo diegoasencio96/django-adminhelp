@@ -60,7 +60,7 @@ pages. You can setup the ModelAdmin you are interested like follow::
         change_form_template = 'adminhelp/admin/change_form.html'
         ...
 
-You will need add the ``django.core.context_processors.request`` on your
+You have to add ``django.core.context_processors.request`` on your
 ``TEMPLATE_CONTEXT_PROCESSORS`` to use these templates and the template tags
 ``help_link`` and ``help_list_item``.
 
@@ -83,8 +83,7 @@ fork or send patchs.
 
 See AUTHORS file for a complete authors list of this application.
 
-Thanks to `Interaction Consortium <http://interactionconsortium.com/>`_ for
-sponsoring the project. Donate you too!
+Thanks to `Interaction Consortium <http://interactionconsortium.com/>`_!
 
 
 Copying conditions
