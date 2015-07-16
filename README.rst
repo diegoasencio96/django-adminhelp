@@ -2,6 +2,8 @@
 Django Admin Help
 =================
 
+*(django-admin is no longer supported!)*
+
 **Django Admin Help** is a pluggable help system for `Django Web Framework`_
 to be used with administration application.
 
